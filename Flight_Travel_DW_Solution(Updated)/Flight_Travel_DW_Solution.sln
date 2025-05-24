@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "Flight_Travel_DW_Solution", "Flight_Travel_DW_Solution.dtproj", "{03DD47ED-4B96-8346-1562-1930DC294D7D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03DD47ED-4B96-8346-1562-1930DC294D7D}.Development|Default.ActiveCfg = Development
+		{03DD47ED-4B96-8346-1562-1930DC294D7D}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C09480A-91EC-440D-8AD0-6785C77A3299}
+	EndGlobalSection
+EndGlobal

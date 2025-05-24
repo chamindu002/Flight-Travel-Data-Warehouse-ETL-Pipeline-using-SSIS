@@ -1,0 +1,66 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/1/2025 12:16:59 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WIN-IH2RGVQ0UC2"
+  DTS:CreatorName="WIN-IH2RGVQ0UC2\Administrator"
+  DTS:DTSID="{E3C58EA0-2785-476F-A1EF-A6600064250C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="testing"
+  DTS:PackageType="5"
+  DTS:VersionBuild="66"
+  DTS:VersionGUID="{21A0C5E8-5DB2-45BF-A9A8-DB6DDEC93111}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WIN-IH2RGVQ0UC2.F_travel_DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D21C4217-62E7-4067-BABD-234F5E54ACFA}"
+      DTS:ObjectName="WIN-IH2RGVQ0UC2.F_travel_DW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=WIN-IH2RGVQ0UC2;Initial Catalog=F_travel_DW;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{D21C4217-62E7-4067-BABD-234F5E54ACFA}WIN-IH2RGVQ0UC2.F_travel_DW;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WIN-IH2RGVQ0UC2.F_travel_staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{841F6977-8B15-48D3-A9C8-48694536E001}"
+      DTS:ObjectName="WIN-IH2RGVQ0UC2.F_travel_staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=WIN-IH2RGVQ0UC2;Initial Catalog=F_travel_staging;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{841F6977-8B15-48D3-A9C8-48694536E001}WIN-IH2RGVQ0UC2.F_travel_staging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WIN-IH2RGVQ0UC2.testDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{ABD4847F-B69C-4F1B-AF8B-2723A305D013}"
+      DTS:ObjectName="WIN-IH2RGVQ0UC2.testDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=WIN-IH2RGVQ0UC2;Initial Catalog=testDW;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-testing-{ABD4847F-B69C-4F1B-AF8B-2723A305D013}WIN-IH2RGVQ0UC2.testDW;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables />
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

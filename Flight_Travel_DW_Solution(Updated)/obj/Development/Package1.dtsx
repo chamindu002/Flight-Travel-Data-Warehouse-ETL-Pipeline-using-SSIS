@@ -1,0 +1,903 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/1/2025 7:25:14 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WIN-IH2RGVQ0UC2"
+  DTS:CreatorName="WIN-IH2RGVQ0UC2\Administrator"
+  DTS:DTSID="{183D361B-7582-4B08-BDFF-F27DDB378959}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{4692244D-1DE4-4B6E-B044-70A8C31B8C49}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WIN-IH2RGVQ0UC2.F_travel_DW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D21C4217-62E7-4067-BABD-234F5E54ACFA}"
+      DTS:ObjectName="WIN-IH2RGVQ0UC2.F_travel_DW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=WIN-IH2RGVQ0UC2;Initial Catalog=F_travel_DW;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{D21C4217-62E7-4067-BABD-234F5E54ACFA}WIN-IH2RGVQ0UC2.F_travel_DW;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[WIN-IH2RGVQ0UC2.F_travel_staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{841F6977-8B15-48D3-A9C8-48694536E001}"
+      DTS:ObjectName="WIN-IH2RGVQ0UC2.F_travel_staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=WIN-IH2RGVQ0UC2;Initial Catalog=F_travel_staging;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{841F6977-8B15-48D3-A9C8-48694536E001}WIN-IH2RGVQ0UC2.F_travel_staging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load Fact"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{14FCF326-EC61-4517-B0DF-5EFA94C0015B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load Fact"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load Fact\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactTicketSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Fact\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[WIN-IH2RGVQ0UC2.F_travel_DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[WIN-IH2RGVQ0UC2.F_travel_DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FlightSK]"
+                      cachedDataType="i4"
+                      cachedName="FlightSK"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FlightSK]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[FlightSK]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[JourneySK]"
+                      cachedDataType="i4"
+                      cachedName="JourneySK"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[JourneySK]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[JourneySK]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CustomerSK]"
+                      cachedDataType="i4"
+                      cachedName="CustomerSK"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerSK]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerSK]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TicketSK]"
+                      cachedDataType="i4"
+                      cachedName="TicketSK"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TicketSK]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[TicketSK]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BaggageSK]"
+                      cachedDataType="i4"
+                      cachedName="BaggageSK"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BaggageSK]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[BaggageSK]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PerformanceSK]"
+                      cachedDataType="i4"
+                      cachedName="PerformanceSK"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PerformanceSK]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[PerformanceSK]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DelayMinutes]"
+                      cachedDataType="i2"
+                      cachedName="DelayMinutes"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DelayMinutes]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[DelayMinutes]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FuelConsumption_L]"
+                      cachedDataType="i2"
+                      cachedName="FuelConsumption_L"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FuelConsumption_L]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[FuelConsumption_L]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Distance_KM]"
+                      cachedDataType="i2"
+                      cachedName="Distance_KM"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Distance_KM]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Distance_KM]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Weight_KG]"
+                      cachedDataType="r8"
+                      cachedName="Weight_KG"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Weight_KG]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Weight_KG]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Type]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Type"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Type]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ExtraCharges]"
+                      cachedDataType="r8"
+                      cachedName="ExtraCharges"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ExtraCharges]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[ExtraCharges]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Price]"
+                      cachedDataType="i4"
+                      cachedName="Price"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Price]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Stops]"
+                      cachedDataType="ui1"
+                      cachedName="Stops"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Stops]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Stops]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Destination]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Destination"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Destination]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Destination]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[InsertDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="InsertDate"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InsertDate]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[InsertDate]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Purchase_Date]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Purchase_Date"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PurchaseDate]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Purchase_Date]" />
+                    <inputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Duration]"
+                      cachedDataType="r8"
+                      cachedName="Duration"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Duration]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Duration]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FlightSK]"
+                      dataType="i4"
+                      name="FlightSK" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[JourneySK]"
+                      dataType="i4"
+                      name="JourneySK" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CustomerSK]"
+                      dataType="i4"
+                      name="CustomerSK" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TicketSK]"
+                      dataType="i4"
+                      name="TicketSK" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BaggageSK]"
+                      dataType="i4"
+                      name="BaggageSK" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PerformanceSK]"
+                      dataType="i4"
+                      name="PerformanceSK" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DelayMinutes]"
+                      dataType="i2"
+                      name="DelayMinutes" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FuelConsumption_L]"
+                      dataType="i2"
+                      name="FuelConsumption_L" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Distance_KM]"
+                      dataType="i2"
+                      name="Distance_KM" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Weight_KG]"
+                      dataType="r8"
+                      name="Weight_KG" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Type]"
+                      dataType="wstr"
+                      length="50"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ExtraCharges]"
+                      dataType="r8"
+                      name="ExtraCharges" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PurchaseDate]"
+                      dataType="dbTimeStamp"
+                      name="PurchaseDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Price]"
+                      dataType="i4"
+                      name="Price" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Stops]"
+                      dataType="ui1"
+                      name="Stops" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Duration]"
+                      dataType="r8"
+                      name="Duration" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Destination]"
+                      dataType="wstr"
+                      length="50"
+                      name="Destination" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InsertDate]"
+                      dataType="dbTimeStamp"
+                      name="InsertDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load Fact\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load Fact\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    df.FlightSK,
+    dj.JourneySK,
+    dc.CustomerSK,
+    dt.TicketSK,
+    db.BaggageSK,
+    fp.PerformanceSK,
+    dj.Duration,
+
+    fp.DelayMinutes,               -- From DimFlightPerformance
+    fp.FuelConsumption_L,          -- From DimFlightPerformance
+    fp.Distance_KM,                -- From DimFlightPerformance
+
+    db.Weight_KG,                  -- From DimBaggage
+    db.Type,                       
+    db.ExtraCharges,               -- From DimBaggage
+
+    dt.Purchase_Date,               -- From DimTicket
+    dt.Price,                      -- From DimTicket
+    dj.Stops,                      -- From DimJourney
+  
+
+    dj.Destination,                -- Replace with actual column name for Destination in DimJourney
+
+    GETDATE() AS InsertDate
+
+FROM DimTicket dt
+INNER JOIN DimCustomer dc ON dt.CustomerSK = dc.CustomerSK
+INNER JOIN DimJourney dj ON dt.JourneySK = dj.JourneySK
+INNER JOIN DimFlight df ON dj.FlightSK = df.FlightSK
+LEFT JOIN DimBaggage db ON dt.TicketSK = db.TicketSK
+LEFT JOIN DimFlightPerformance fp ON df.FlightSK = fp.FlightSK AND dj.JourneySK = fp.JourneySK;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load Fact\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[WIN-IH2RGVQ0UC2.F_travel_DW]"
+                  connectionManagerRefId="Package.ConnectionManagers[WIN-IH2RGVQ0UC2.F_travel_DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[FlightSK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FlightSK]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[FlightSK]"
+                      name="FlightSK"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[JourneySK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[JourneySK]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[JourneySK]"
+                      name="JourneySK"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerSK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerSK]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[CustomerSK]"
+                      name="CustomerSK"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[TicketSK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TicketSK]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[TicketSK]"
+                      name="TicketSK"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[BaggageSK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BaggageSK]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[BaggageSK]"
+                      name="BaggageSK"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[PerformanceSK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PerformanceSK]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[PerformanceSK]"
+                      name="PerformanceSK"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[DelayMinutes]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DelayMinutes]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[DelayMinutes]"
+                      name="DelayMinutes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[FuelConsumption_L]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FuelConsumption_L]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[FuelConsumption_L]"
+                      name="FuelConsumption_L"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Distance_KM]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Distance_KM]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Distance_KM]"
+                      name="Distance_KM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Weight_KG]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Weight_KG]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Weight_KG]"
+                      name="Weight_KG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Type]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                      length="50"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Type]"
+                      name="Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[ExtraCharges]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ExtraCharges]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[ExtraCharges]"
+                      name="ExtraCharges"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Purchase_Date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Purchase_Date]"
+                      length="10"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Purchase_Date]"
+                      name="Purchase_Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Price]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Price]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Price]"
+                      name="Price"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Stops]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Stops]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Stops]"
+                      name="Stops"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Destination]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Destination]"
+                      length="50"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Destination]"
+                      name="Destination"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[InsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InsertDate]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[InsertDate]"
+                      name="InsertDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Duration]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Duration]"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].Columns[Duration]"
+                      name="Duration"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FlightSK]"
+                      dataType="i4"
+                      name="FlightSK" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[JourneySK]"
+                      dataType="i4"
+                      name="JourneySK" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CustomerSK]"
+                      dataType="i4"
+                      name="CustomerSK" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TicketSK]"
+                      dataType="i4"
+                      name="TicketSK" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[BaggageSK]"
+                      dataType="i4"
+                      name="BaggageSK" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PerformanceSK]"
+                      dataType="i4"
+                      name="PerformanceSK" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DelayMinutes]"
+                      dataType="i2"
+                      name="DelayMinutes" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[FuelConsumption_L]"
+                      dataType="i2"
+                      name="FuelConsumption_L" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Distance_KM]"
+                      dataType="i2"
+                      name="Distance_KM" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Weight_KG]"
+                      dataType="r8"
+                      name="Weight_KG" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                      dataType="wstr"
+                      length="50"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ExtraCharges]"
+                      dataType="r8"
+                      name="ExtraCharges" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Purchase_Date]"
+                      dataType="wstr"
+                      length="10"
+                      name="Purchase_Date" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Price]"
+                      dataType="i4"
+                      name="Price" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Stops]"
+                      dataType="ui1"
+                      name="Stops" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Destination]"
+                      dataType="wstr"
+                      length="50"
+                      name="Destination" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[InsertDate]"
+                      dataType="dbTimeStamp"
+                      name="InsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Duration]"
+                      dataType="r8"
+                      name="Duration" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FlightSK]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FlightSK]"
+                      name="FlightSK" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[JourneySK]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[JourneySK]"
+                      name="JourneySK" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerSK]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CustomerSK]"
+                      name="CustomerSK" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TicketSK]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TicketSK]"
+                      name="TicketSK" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BaggageSK]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[BaggageSK]"
+                      name="BaggageSK" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PerformanceSK]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PerformanceSK]"
+                      name="PerformanceSK" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Duration]"
+                      dataType="r8"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Duration]"
+                      name="Duration" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DelayMinutes]"
+                      dataType="i2"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DelayMinutes]"
+                      name="DelayMinutes" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FuelConsumption_L]"
+                      dataType="i2"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[FuelConsumption_L]"
+                      name="FuelConsumption_L" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Distance_KM]"
+                      dataType="i2"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Distance_KM]"
+                      name="Distance_KM" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Weight_KG]"
+                      dataType="r8"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Weight_KG]"
+                      name="Weight_KG" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Type]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Type]"
+                      name="Type" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ExtraCharges]"
+                      dataType="r8"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ExtraCharges]"
+                      name="ExtraCharges" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Purchase_Date]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Purchase_Date]"
+                      name="Purchase_Date" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Price]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Price]"
+                      name="Price" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Stops]"
+                      dataType="ui1"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Stops]"
+                      name="Stops" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Destination]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Destination]"
+                      name="Destination" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InsertDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[InsertDate]"
+                      name="InsertDate" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load Fact.Paths[OLE DB Source Output]"
+              endId="Package\Load Fact\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Load Fact\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="124.8,41.6"
+          Id="Package\Load Fact"
+          TopLeft="285.833317716089,123.066665810876" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load Fact">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Load Fact\OLE DB Source"
+          TopLeft="192.999997124076,65.9999990165233" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Load Fact\OLE DB Destination"
+          TopLeft="200.999997004867,201.999996989965" />
+        <EdgeLayout
+          Id="Package\Load Fact.Paths[OLE DB Source Output]"
+          TopLeft="268.999997124076,107.599999016523">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="17.5999998807906,94.3999979734421"
+              Start="0,0"
+              End="17.5999998807906,86.8999979734421">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.1999989867211" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,43.1999989867211"
+                    Point2="0,47.1999989867211"
+                    Point3="4,47.1999989867211" />
+                  <mssgle:LineSegment
+                    End="13.5999998807906,47.1999989867211" />
+                  <mssgle:CubicBezierSegment
+                    Point1="13.5999998807906,47.1999989867211"
+                    Point2="17.5999998807906,47.1999989867211"
+                    Point3="17.5999998807906,51.1999989867211" />
+                  <mssgle:LineSegment
+                    End="17.5999998807906,86.8999979734421" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fact\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load Fact\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
